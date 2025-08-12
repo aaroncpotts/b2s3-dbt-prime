@@ -1,9 +1,11 @@
+--imports
 with stripe_source AS (
 
 SELECT *
 FROM {{ source('stripe', 'payment') }}
 ),
 
+--transformations
 renamed as (
     SELECT id as payment_id,
     orderid as order_id,
@@ -15,5 +17,6 @@ renamed as (
     from stripe_source
 )
 
+--final
 select *
 from renamed
