@@ -10,7 +10,7 @@ renamed AS (
     SELECT
     id AS customer_id,
     first_name as customer_first_name,
-    last_name as customer_last_name
+    last_name as customer_last_name,
     first_name || ' ' || last_name as full_name
     FROM customers_import
 )
