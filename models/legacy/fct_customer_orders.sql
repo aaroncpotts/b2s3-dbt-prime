@@ -1,3 +1,10 @@
+{{
+    config(
+        materialized='incremental'
+    )
+
+}}
+
 with
 -- Import CTEs
     customers as (
@@ -53,3 +60,8 @@ left join customers on paid_orders.customer_id = customers.customer_id
 -- Simple Select Statment
 select *
 from final
+{% if is_incremental() %}
+where
+order_placed_at >= (select max(order_placed_at) from {{this}})
+{% endif %}
+order by order_placed_at DESC
