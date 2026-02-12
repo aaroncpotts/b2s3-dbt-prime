@@ -9,7 +9,7 @@ FROM {{ ref('stg_stripe__payment') }} ),
 successful AS (
     SELECT *
     FROM payments
-    WHERE status = 'success'
+    WHERE payment_status = 'success'
 )
 
 --final CTE

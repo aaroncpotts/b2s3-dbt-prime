@@ -14,8 +14,8 @@ WITH successful_payments AS (
 --transformations
 aggregated AS (
     SELECT
-        created_at as date,
-        sum(amount) as daily_sales
+        payment_created_at as date,
+        sum(payment_amount) as daily_sales
     FROM successful_payments
     GROUP BY date
     ORDER BY date ASC
